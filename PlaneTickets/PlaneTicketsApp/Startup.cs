@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PlaneTicketsApp.Data;
 using PlaneTicketsApp.Entities;
+using PlaneTicketsApp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace PlaneTicketsApp
                 .AddDefaultTokenProviders();
                 //.AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             services.Configure<IdentityOptions>(option =>
             {
@@ -54,6 +56,7 @@ namespace PlaneTicketsApp
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

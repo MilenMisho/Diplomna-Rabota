@@ -24,6 +24,29 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
+
+                        @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+            {
+                <li class="nav-item active">
+                    <div class="dropdown show">
+                        <a class="nav-link active dropdown-toggle" href="#"
+                           id="dropdownMenuLink"
+                           data-toggle="dropdown"
+                           aria-haspopup="true"
+                           aria-expanded="false">
+                           Offers
+                           </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="/Offers/Index">All</a>
+                            <a class="dropdown-item" href="/Offers/Create">Add</a>
+                        </div>
+                        </div>
+                    </li>
+            }
+
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
