@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PlaneTicketsApp.Data;
+using PlaneTicketsApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,14 +33,17 @@ namespace PlaneTicketsApp
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+                //.AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
 
             services.Configure<IdentityOptions>(option =>
             {
                 option.Password.RequireDigit = false;
-                option.Password.RequiredLength = 3;
+                option.Password.RequiredLength = 5;
                 option.Password.RequireLowercase = false;
                 option.Password.RequireUppercase = false;
                 option.Password.RequireNonAlphanumeric = false;
