@@ -4,6 +4,7 @@ using PlaneTicketsApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using PlaneTicketsApp.Models;
 
 namespace PlaneTicketsApp.Data
 {
@@ -14,5 +15,6 @@ namespace PlaneTicketsApp.Data
         {
             this.Database.EnsureCreated();
         }
+        public DbSet<PlaneTicketsApp.Models.ClientBindingAllViewModel> ClientBindingAllViewModel { get; set; }
     }
 }
