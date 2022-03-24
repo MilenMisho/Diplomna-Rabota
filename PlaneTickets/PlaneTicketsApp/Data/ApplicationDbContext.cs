@@ -16,5 +16,6 @@ namespace PlaneTicketsApp.Data
             this.Database.EnsureCreated();
         }
         public DbSet<PlaneTicketsApp.Models.ClientBindingAllViewModel> ClientBindingAllViewModel { get; set; }
+        public DbSet<PlaneTicketsApp.Models.FlightBindingAllViewModel> FlightBindingAllViewModel { get; set; }
     }
 }
