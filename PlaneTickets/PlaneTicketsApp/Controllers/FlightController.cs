@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PlaneTicketsApp.Abstractions;
 using PlaneTicketsApp.Data;
+using PlaneTicketsApp.Domain;
 using PlaneTicketsApp.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,11 @@ namespace PlaneTicketsApp.Controllers
         public FlightController(ApplicationDbContext context)
         {
             this.context = context;
+        }
+        private readonly IFlightService _flightService;
+        public FlightController(IFlightService flightService)
+        {
+            this._flightService = flightService;
         }
 
         public ActionResult AllFlights()
@@ -41,13 +48,22 @@ namespace PlaneTicketsApp.Controllers
             return View();
         }
 
-        // GET: ClientController/Create
-        public ActionResult Create()
+
+        [HttpPost]
+        public ActionResult Create(FlightBindingAllViewModel bindingModel)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var created = _flightService.Create(bindingModel.FlightNumber, bindingModel.StartingDestination, bindingModel.EndingDestination, bindingModel.TakeOffDateAndTime, bindingModel.LandingDateAndTime, bindingModel.Plane, bindingModel.PricePerTicket);
+                if (created)
+                {
+                    return this.RedirectToAction("Success");
+                }
+            }
+            return this.View();
         }
 
-        // POST: ClientController/Create
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -62,34 +78,33 @@ namespace PlaneTicketsApp.Controllers
             }
         }
 
-        // GET: ClientController/Edit/5
+
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ClientController/Edit/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //public ActionResult Edit(int id)
+        //{
+        //    Flight item = _flightService.GetFlightById(id);
+        //    if (item == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View();
+            
+        //}
 
-        // GET: ClientController/Delete/5
+
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ClientController/Delete/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

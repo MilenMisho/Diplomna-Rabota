@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using PlaneTicketsApp.Models;
+using PlaneTicketsApp.Domain;
 
 namespace PlaneTicketsApp.Data
 {
@@ -15,6 +16,10 @@ namespace PlaneTicketsApp.Data
         {
             this.Database.EnsureCreated();
         }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Plane> Planes { get; set; }
+        public DbSet<Reserve> Reservations { get; set; }
+        public DbSet<Flight> Flights { get; set; }
         public DbSet<PlaneTicketsApp.Models.ClientBindingAllViewModel> ClientBindingAllViewModel { get; set; }
         public DbSet<PlaneTicketsApp.Models.FlightBindingAllViewModel> FlightBindingAllViewModel { get; set; }
     }

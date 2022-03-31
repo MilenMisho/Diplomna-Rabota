@@ -1,6 +1,7 @@
 ﻿using PlaneTicketsApp.Abstractions;
 using PlaneTicketsApp.Data;
 using PlaneTicketsApp.Domain;
+using PlaneTicketsApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,11 +73,7 @@ namespace PlaneTicketsApp.Services
 
 
 
-        public List<Flight> GetFlights(int flightId)
-        {
-            List<Flight> flights = _context.Flights.Find(flightId);
-            return flights;
-        }
+        
 
 
 
@@ -90,6 +87,12 @@ namespace PlaneTicketsApp.Services
             }
             _context.Remove(flight);
             return _context.SaveChanges() != 0;
+        }
+
+        public List<Flight> GetFlights()
+        {
+            List<Flight> flights = _context.Flights.ToList();
+            return flights;
         }
     }
 }
