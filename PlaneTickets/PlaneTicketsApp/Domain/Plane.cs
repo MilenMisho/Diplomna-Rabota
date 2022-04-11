@@ -11,7 +11,7 @@ namespace PlaneTicketsApp.Domain
         public string PlaneNumber { get; set; }
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
-        public string picture { get; set; }
+        public string Picture { get; set; }
         public string HandLuggage { get; set; }
         public string BarOnBoard { get; set; }
         public int SeatsTypeBed { get; set; }

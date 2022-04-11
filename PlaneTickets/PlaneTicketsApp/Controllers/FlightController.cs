@@ -85,17 +85,17 @@ namespace PlaneTicketsApp.Controllers
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public actionresult edit(int id)
         //{
-        //    Flight item = _flightService.GetFlightById(id);
+        //    flight item = _flightservice.getflightbyid(id);
         //    if (item == null)
         //    {
-        //        return NotFound();
+        //        return notfound();
         //    }
-        //    return View();
-            
+        //    return view();
+
         //}
 
 

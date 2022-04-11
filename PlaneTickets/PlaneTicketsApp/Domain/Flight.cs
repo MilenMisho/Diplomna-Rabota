@@ -9,7 +9,7 @@ namespace PlaneTicketsApp.Domain
     public class Flight
     {
         public int Id { get; set; }
-        public string FlightNumber { get; set; }
+        public int FlightNumber { get; set; }
         
         public string StartingDestination { get; set; }
         public string EndingDestination { get; set; }

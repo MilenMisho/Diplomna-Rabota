@@ -15,5 +15,8 @@ namespace PlaneTicketsApp.Domain
         public virtual ApplicationUser User { get; set; }
         public DateTime DateOfReservation { get; set; }
         public int TicketNumber { get; set; }
+        public decimal Price { get; set; }
+        public int Discount { get; set; }
+        public decimal TotalPrice { get { return TicketNumber * Price - TicketNumber * Price * Discount / 100; ; } }
     }
 }

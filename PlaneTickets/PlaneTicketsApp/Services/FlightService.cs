@@ -25,7 +25,7 @@ namespace PlaneTicketsApp.Services
 
 
 
-        public bool Create(int flightnumber, string startingdestination, string endingdestination, int takeoffdateandtime, int landingdateandtime, string plane, int priceperticket)
+        public bool Create(int flightnumber, string startingdestination, string endingdestination, DateTime takeoffdateandtime, DateTime landingdateandtime, Plane plane, int priceperticket)
         {
             Flight item = new Flight
             {
@@ -45,7 +45,7 @@ namespace PlaneTicketsApp.Services
 
 
 
-       public bool UpdateFlight(int FlightId, int flightnumber, string startingdestination, string endingdestination, int takeoffdateandtime, int landingdateandtime, string plane, int priceperticket)
+       public bool UpdateFlight(int FlightId, int flightnumber, string startingdestination, string endingdestination, DateTime takeoffdateandtime, DateTime landingdateandtime, Plane plane, int priceperticket)
         {
             var flight = GetFlightById(FlightId);
             if (flight == default(Flight))
