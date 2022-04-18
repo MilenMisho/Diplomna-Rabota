@@ -21,6 +21,7 @@ namespace PlaneTicketsApp.Data
         public DbSet<Reserve> Reservations { get; set; }
         public DbSet<Flight> Flights { get; set; }
         public DbSet<PlaneTicketsApp.Models.ClientBindingAllViewModel> ClientBindingAllViewModel { get; set; }
+        public DbSet<PlaneTicketsApp.Models.OrderAllVM> OrderAllVM { get; set; }
         //public DbSet<PlaneTicketsApp.Models.FlightBindingAllViewModel> FlightBindingAllViewModel { get; set; }
     }
 }

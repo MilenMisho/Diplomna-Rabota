@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using PlaneTicketsApp.Data;
+using PlaneTicketsApp.Domain;
 using PlaneTicketsApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,6 +21,9 @@ namespace PlaneTicketsApp.Infrastructure
 
             await RoleSeeder(services);
             await SeedAdministrator(services);
+
+            var dataBrand = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedBrands(dataBrand);
 
             return app;
         }
@@ -60,5 +65,21 @@ namespace PlaneTicketsApp.Infrastructure
                 }
             }
         }
+        private static void SeedBrands(ApplicationDbContext dataBrand)
+        {
+            if (dataBrand.Brands.Any())
+            {
+                return;
+            }
+            dataBrand.Brands.AddRange(new[]
+            {
+                new Brand {BrandName="Airbus"},
+              new Brand {BrandName="Boeing"},
+               
+
+            });
+            dataBrand.SaveChanges();
+        }
+
     }
 }

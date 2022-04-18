@@ -1,0 +1,85 @@
+﻿@model IEnumerable<PlaneTicketsApp.Domain.Plane>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PlaneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Brand)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Picture)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HandLuggage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BarOnBoard)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SeatsTypeBed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PassangerSeats)
+                </th>
+                
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlaneNumber)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.Brand.Id)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Picture)" alt="Image" width="100px" />
+                    @*@Html.DisplayFor(modelItem => item.Picture)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HandLuggage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BarOnBoard)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatsTypeBed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassangerSeats)
+                </td>
+              
+                }
+                @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+                {
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>

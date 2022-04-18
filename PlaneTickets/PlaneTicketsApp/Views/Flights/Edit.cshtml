@@ -1,0 +1,74 @@
+﻿@model PlaneTicketsApp.Domain.Flight
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Flight</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FlightNumber" class="control-label"></label>
+                <input asp-for="FlightNumber" class="form-control" />
+                <span asp-validation-for="FlightNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartingDestination" class="control-label"></label>
+                <input asp-for="StartingDestination" class="form-control" />
+                <span asp-validation-for="StartingDestination" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndingDestination" class="control-label"></label>
+                <input asp-for="EndingDestination" class="form-control" />
+                <span asp-validation-for="EndingDestination" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TakeOffDateAndTime" class="control-label"></label>
+                <input asp-for="TakeOffDateAndTime" class="form-control" />
+                <span asp-validation-for="TakeOffDateAndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LandingDateAndTime" class="control-label"></label>
+                <input asp-for="LandingDateAndTime" class="form-control" />
+                <span asp-validation-for="LandingDateAndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PlaneId" class="control-label"></label>
+                <select asp-for="PlaneId" class="form-control" asp-items="ViewBag.PlaneId"></select>
+                <span asp-validation-for="PlaneId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PricePerTicket" class="control-label"></label>
+                <input asp-for="PricePerTicket" class="form-control" />
+                <span asp-validation-for="PricePerTicket" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discount" class="control-label"></label>
+                <input asp-for="Discount" class="form-control" />
+                <span asp-validation-for="Discount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountTickets" class="control-label"></label>
+                <input asp-for="CountTickets" class="form-control" />
+                <span asp-validation-for="CountTickets" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

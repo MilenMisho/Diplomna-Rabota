@@ -1,0 +1,111 @@
+﻿@model IEnumerable<PlaneTicketsApp.Domain.Flight>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+{
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FlightNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartingDestination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndingDestination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TakeOffDateAndTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LandingDateAndTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Plane)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PricePerTicket)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Discount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CountTickets)
+                </th>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <th>
+                        Reservation
+                    </th>
+                }
+                    <th></th>
+                </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartingDestination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndingDestination)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TakeOffDateAndTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LandingDateAndTime)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Plane.Id)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plane.PlaneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricePerTicket)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountTickets)
+                </td>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        @await Html.PartialAsync("_OrderPartialView", new OrderCreateVM
+                   {
+                       FlightId = item.Id
+
+                   })
+                    </td>
+                }
+
+                @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+
+            </tr>
+            }
+        </tbody>
+    </table>

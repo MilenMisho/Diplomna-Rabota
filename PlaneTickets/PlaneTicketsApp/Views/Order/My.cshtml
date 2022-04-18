@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PlaneTicketsApp.Models.OrderAllVM>
+
+@{
+    ViewData["Title"] = "My";
+}
+
+<h1>My</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfReservation)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.FlightId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.FightNumber)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Plane)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountTickets)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricePerTicket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfReservation)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.FlightId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.FightNumber)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.User)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plane)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Picture)" alt="Image" width="100" />
+                @*@Html.DisplayFor(modelItem => item.Picture)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountTickets)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PricePerTicket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            @*<td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>*@
+        </tr>
+}
+    </tbody>
+</table>

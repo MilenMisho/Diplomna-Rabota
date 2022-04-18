@@ -7,9 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PlaneTicketsApp.Abstractions;
 using PlaneTicketsApp.Data;
 using PlaneTicketsApp.Entities;
 using PlaneTicketsApp.Infrastructure;
+using PlaneTicketsApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,17 +32,20 @@ namespace PlaneTicketsApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+            options.UseLazyLoadingProxies()
+                .UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
-                //.AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>()
+                 .AddRoles<IdentityRole>()
+                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                 .AddDefaultTokenProviders();
             services.AddControllersWithViews();
-            services.AddRazorPages();
+
+
+            services.AddTransient<IBrandService,BrandService>();
+
 
             services.Configure<IdentityOptions>(option =>
             {
