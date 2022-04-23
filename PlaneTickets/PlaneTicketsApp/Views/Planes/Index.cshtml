@@ -3,8 +3,20 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+<style>
+    body {
+        background-color: deepskyblue;
+    }
+    table {
+        border: 5px;
+        border-color: white;
+        border-style: solid;
+    }
+    h1, p, th, td {
+        color: white;
+    }
+</style>
+<h1>Here you can see what planes you can fly with</h1>
 @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
 {
     <p>
@@ -69,7 +81,7 @@
                     @Html.DisplayFor(modelItem => item.PassangerSeats)
                 </td>
               
-                }
+                
                 @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
                 {
 

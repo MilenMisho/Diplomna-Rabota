@@ -2,8 +2,17 @@
 
 @{ ViewData["Title"] = "Statistic"; }
 
-<h1>Statistic</h1>
+<h1>Statistics</h1>
 
 <h4>Count of all flights: @Model.countFlights</h4>
 <h4>Count of all users: @Model.countUsers</h4>
 <h4>Count of all orders: @Model.countOrders</h4>
+
+<style>
+    body {
+        background-color: deepskyblue;
+    }
+    h1, h4{
+        color: white;
+    }
+</style>
