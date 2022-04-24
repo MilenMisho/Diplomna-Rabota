@@ -20,8 +20,8 @@ namespace PlaneTicketsApp.Controllers
         {
             _context = context;
         }
+
         [AllowAnonymous]
-        // GET: Flights
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Flights.Include(f => f.Plane);

@@ -69,7 +69,7 @@ namespace PlaneTicketsApp.Controllers
                      Id = x.Id,
                      DateOfReservation = x.DateOfReservation.ToString("dd-mm-yyyy hh:mm", CultureInfo.InvariantCulture),
                      FlightId = x.Id,
-                     FightNumber = x.Flight.FlightNumber,
+                     FlightNumber = x.Flight.FlightNumber,
                      Plane = x.Flight.Plane.PlaneNumber,
                      Picture = x.Flight.Plane.Picture,
 
@@ -104,7 +104,7 @@ namespace PlaneTicketsApp.Controllers
                       Id = x.Id,
                       DateOfReservation = x.DateOfReservation.ToString("dd-mm-yyyy hh:mm", CultureInfo.InvariantCulture),
                       FlightId = x.Id,
-                      FightNumber=x.Flight.FlightNumber,
+                      FlightNumber=x.Flight.FlightNumber,
                       Plane=x.Flight.Plane.PlaneNumber,
                       Picture=x.Flight.Plane.Picture,
 

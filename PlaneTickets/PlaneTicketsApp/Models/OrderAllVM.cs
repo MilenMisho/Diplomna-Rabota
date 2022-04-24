@@ -16,7 +16,7 @@ namespace PlaneTicketsApp.Models
         
         public int FlightId { get; set; }
         [Display(Name = "Flight")]
-        public int FightNumber { get; set; }
+        public int FlightNumber { get; set; }
 
         public string Plane { get; set; }
         public string Picture { get; set; }
